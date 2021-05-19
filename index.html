@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style/main.css">
     <link rel="stylesheet" href="assets/style/style.css">
     <title>gregslist</title>
@@ -14,10 +13,10 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-dark navbar-expand bg-dark text-light">
+        <nav class="navbar navbar-light navbar-expand bg-primary text-light">
             <a class="navbar-brand" href="#">
                 <img src="assets/img/logo.png" width="45" height="45" alt="" loading="lazy">
-                <span class="ml-2">gregslist</span>
+                <span class="ml-2">Gregslist</span>
             </a>
         </nav>
     </header>
@@ -28,7 +27,7 @@
                     <button class="btn btn-primary btn-block" onclick="app.carsController.drawCars()">Cars</button>
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-primary btn-block">Houses</button>
+                    <button class="btn btn-primary btn-block" onclick="app.housesController.drawHouses()">Houses</button>
                 </div>
                 <!-- <div class="col-2"><button class="btn btn-info">Missed Connections Soooon</button></div>
                 <div class="col-2"><button class="btn btn-info"></button></div>
@@ -77,6 +76,37 @@
                 </div>
             </div>
 
+            <div class="row mb-5">
+                <div class="col-12">
+                    <button class="" onclick="app.housesController.toggleForm()">Add a House!</button>
+                </div>
+                <div class="col-8 m-auto">
+                    <form class="card p-3 shadow d-none" id="house-form" onsubmit="app.housesController.addHouse(event)">
+                        <div class="form-group">
+                            <label for="bedroom" class="sr-only">Bedrooms:</label>
+                            <input class="form-control" placeholder="Bedrooms" type="number" min="1" id="bedroom" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="bathroom" class="sr-only">Bathrooms:</label>
+                            <input class="form-control" placeholder="Bathrooms" type="number" min="1" id="bathroom" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="footage" class="sr-only">Square Feet:</label>
+                            <input class="form-control" placeholder="Square Feet" type="number" min="1" id="footage" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="sr-only">Price:</label>
+                            <input class="form-control" placeholder="Price" type="number" min="1000" id="price" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="img" class="sr-only">Image:</label>
+                            <input class="form-control" placeholder="Image" type="text" id="img" required/>
+                        </div>
+                        <button type="submit">submit form</button>
+                    </form>
+                </div>
+
+            </div>
 
         </div>
     </main>
