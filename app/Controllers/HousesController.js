@@ -1,33 +1,17 @@
 import { ProxyState } from "../AppState.js";
+import { carsService } from "../Services/CarsService.js";
 import { housesService } from "../Services/HousesService.js"
 
 export class HousesController {
   constructor() {
     ProxyState.on('houses', this.drawHouses)
-    // this.drawHouses()
+   housesService.getHouses()
   }
 
   drawHouses() {
     let template = ''
-
     ProxyState.houses.forEach(house => {
-      template += /*html*/ `
-        <div class="col-lg-4 listing my-3">
-          <div class="card">
-            <div>
-              <img src="${house.img}" height="200" />
-            </div>
-              <p>
-                <b>${house.bedroom}${house.bathroom} ${house.squareFeet}</b>
-              </p>
-              <p>
-              <em>${house.price}</em>
-              </p>
-            <div>
-            </div>
-          </div>
-        </div>
-        `
+      template += house.cardTemplate
     })
     document.getElementById('listings').innerHTML = template
   }
@@ -37,16 +21,39 @@ export class HousesController {
     console.log(event)
     let form = event.target
     let formData = {
-      bedroom: form.bedroom.value,
-      bathroom: form.bathroom.value,
-      footage: form.footage.value,
+      bedrooms: form.bedrooms.value,
+      bathrooms: form.bathrooms.value,
       price: form.price.value,
-      img: form.img.value,
+      year: form.year.value,
+      description: form.description.value,
+      imgUrl: form.imgUrl.value,
     }
-    console.log(formData)
-    housesService.addHouse(formData)
+    if(form.houseId.value){
+      formData.id = form.houseId.value
+      housesService.updateHouse(formData)
+    }else{
+      housesService.addHouse(formData)
+    }
     form.reset()
     this.toggleForm()
+  }
+// NOTE DELETE: This will send to the house service to delete that info
+  deleteHouse(id){
+    if(window.confirm('You sure bruh?'))
+    housesService.deleteHouse(id)
+  }
+
+  editHouse(id){
+    let house = ProxyState.houses.find(h => h.id == id)
+    console.log('did it find the house', house)
+    let form = document.getElementById('house-form')
+    form.bedrooms.value = house.bedrooms
+    form.bathrooms.value = house.bathrooms
+    form.price.value = house.price
+    form.year.value = house.year
+    form.description.value = house.description
+    form.imgUrl.value = house.imgUrl
+    form.houseId.value = house.id
   }
   toggleForm(){
     document.getElementById('house-form').classList.toggle('d-none')

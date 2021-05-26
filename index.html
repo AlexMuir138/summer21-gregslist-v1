@@ -22,7 +22,7 @@
     </header>
     <main>
         <div class="container-fluid my-3">
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 <div class="col-2">
                     <button class="btn btn-primary btn-block" onclick="app.carsController.drawCars()">Cars</button>
                 </div>
@@ -82,17 +82,22 @@
                 </div>
                 <div class="col-8 m-auto">
                     <form class="card p-3 shadow d-none" id="house-form" onsubmit="app.housesController.addHouse(event)">
+                       <input type="text" class="d-none" name="houseId" id="houseId">
                         <div class="form-group">
-                            <label for="bedroom" class="sr-only">Bedrooms:</label>
-                            <input class="form-control" placeholder="Bedrooms" type="number" min="1" id="bedroom" required/>
+                            <label for="bedrooms" class="sr-only">Bedrooms:</label>
+                            <input class="form-control" placeholder="Bedrooms" type="number" min="1" id="bedrooms" required/>
                         </div>
                         <div class="form-group">
-                            <label for="bathroom" class="sr-only">Bathrooms:</label>
-                            <input class="form-control" placeholder="Bathrooms" type="number" min="1" id="bathroom" required/>
+                            <label for="bathrooms" class="sr-only">Bathrooms:</label>
+                            <input class="form-control" placeholder="Bathrooms" type="number" min="1" id="bathrooms" required/>
                         </div>
                         <div class="form-group">
-                            <label for="footage" class="sr-only">Square Feet:</label>
-                            <input class="form-control" placeholder="Square Feet" type="number" min="1" id="footage" required/>
+                            <label for="year" class="sr-only">Year Built:</label>
+                            <input class="form-control" placeholder="Year Built" type="number" min="1" id="year" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="sr-only">Description:</label>
+                            <input class="form-control" placeholder="Description" type="text" minlength="4" id="description" required/>
                         </div>
                         <div class="form-group">
                             <label for="price" class="sr-only">Price:</label>
@@ -100,7 +105,7 @@
                         </div>
                         <div class="form-group">
                             <label for="img" class="sr-only">Image:</label>
-                            <input class="form-control" placeholder="Image" type="text" id="img" required/>
+                            <input class="form-control" placeholder="Image" type="text" id="imgUrl" required/>
                         </div>
                         <button type="submit">submit form</button>
                     </form>
@@ -117,7 +122,8 @@
             </div>
         </div>
     </footer>
-
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="app/main.js" type="module"></script>
 </body>
 
